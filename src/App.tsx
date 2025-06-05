@@ -12,6 +12,7 @@ import VisaSolutionsPage from './pages/VisaSolutionsPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
+import WhatsAppButton from './components/WhatsAppButton';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+      <WhatsAppButton />
     </Router>
   );
 }
