@@ -29,9 +29,7 @@ const Header: React.FC = () => {
 
   const languages = [
     { code: 'en', name: 'English' },
-    { code: 'fr', name: 'Français' },
-    { code: 'es', name: 'Español' },
-    { code: 'zh', name: '中文' },
+    { code: 'ru', name: 'Русский' }
   ];
 
   return (
@@ -84,7 +82,7 @@ const Header: React.FC = () => {
               </button>
               
               {languageMenuOpen && (
-                <div className="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg py-1 z-20 animate-fade-in">
+                <div className="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 z-20 animate-fade-in">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
@@ -99,7 +97,7 @@ const Header: React.FC = () => {
             </div>
 
             {/* CTA Button */}
-            <Link to="/contact" className="btn-primary btn-md">
+            <Link to="/free-assessment" className="btn-primary btn-md">
               Free Assessment
             </Link>
           </div>
@@ -144,7 +142,7 @@ const Header: React.FC = () => {
             
             <div className="mt-6 flex flex-col space-y-4">
               {/* Language Options */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex gap-2">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
@@ -157,7 +155,7 @@ const Header: React.FC = () => {
               
               {/* CTA Button */}
               <Link
-                to="/contact"
+                to="/free-assessment"
                 className="btn-primary btn-md w-full justify-center"
                 onClick={() => setMobileMenuOpen(false)}
               >

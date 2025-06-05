@@ -7,10 +7,11 @@ interface CountryCardProps {
   name: string;
   image: string;
   programs: string[];
+  focus: string;
   link: string;
 }
 
-const CountryCard: React.FC<CountryCardProps> = ({ name, image, programs, link }) => {
+const CountryCard: React.FC<CountryCardProps> = ({ name, image, programs, focus, link }) => {
   return (
     <div className="rounded-lg overflow-hidden shadow-md bg-white group hover:shadow-xl transition-all duration-300">
       <div className="h-48 overflow-hidden">
@@ -25,8 +26,9 @@ const CountryCard: React.FC<CountryCardProps> = ({ name, image, programs, link }
           <MapPin className="w-5 h-5 text-primary-500 mr-2" />
           <h3 className="font-bold text-lg">{name}</h3>
         </div>
+        <p className="text-sm text-gray-500 mb-3">{focus}</p>
         <ul className="mb-4 space-y-1">
-          {programs.slice(0, 3).map((program, index) => (
+          {programs.slice(0, 2).map((program, index) => (
             <li key={index} className="text-gray-600 text-sm flex items-center">
               <ChevronRight className="w-4 h-4 text-primary-400 mr-1 flex-shrink-0" />
               {program}
@@ -37,7 +39,7 @@ const CountryCard: React.FC<CountryCardProps> = ({ name, image, programs, link }
           to={link} 
           className="btn-primary btn-sm w-full justify-center"
         >
-          Explore Options
+          Explore Programs
         </Link>
       </div>
     </div>
@@ -49,49 +51,55 @@ const CountriesSection: React.FC = () => {
   
   const countries = [
     {
-      name: 'Canada',
-      image: 'https://images.pexels.com/photos/2773578/pexels-photo-2773578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      programs: ['Express Entry', 'Provincial Nominee Program', 'Student Visa', 'Work Permit'],
-      types: ['immigration', 'study'],
-      link: '/immigration'
+      name: 'Russia',
+      image: 'https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?w=1600&h=900&fit=crop',
+      programs: ['MBBS (6 yrs, MD)', 'MBBS (5 yrs + intern)'],
+      focus: 'Medical Colleges',
+      link: '/study-abroad/russia',
+      types: ['study']
     },
     {
-      name: 'Australia',
-      image: 'https://images.pexels.com/photos/1878293/pexels-photo-1878293.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      programs: ['Skilled Migration', 'Student Visa', 'Partner Visa', 'Business Visa'],
-      types: ['immigration', 'study'],
-      link: '/immigration'
+      name: 'Singapore',
+      image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1600&h=900&fit=crop',
+      programs: ['Diploma in Hospitality & Tourism', 'Diploma in Hotel Management'],
+      focus: 'Hotel Management',
+      link: '/study-abroad/singapore',
+      types: ['study']
     },
     {
-      name: 'United States',
-      image: 'https://images.pexels.com/photos/1796730/pexels-photo-1796730.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      programs: ['H-1B Visa', 'F-1 Student Visa', 'Green Card', 'Investment Visa'],
-      types: ['immigration', 'study'],
-      link: '/immigration'
+      name: 'Dubai',
+      image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&h=900&fit=crop',
+      programs: ['MBBS (6 yrs)', 'Medical Sciences'],
+      focus: 'Medical Colleges',
+      link: '/study-abroad/dubai',
+      types: ['study']
     },
     {
-      name: 'United Kingdom',
-      image: 'https://images.pexels.com/photos/726484/pexels-photo-726484.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      programs: ['Skilled Worker Visa', 'Student Visa', 'Family Visa', 'Innovator Visa'],
-      types: ['immigration', 'study'],
-      link: '/immigration'
+      name: 'Armenia',
+      image: 'https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=1600&h=900&fit=crop',
+      programs: ['Medicine MD (6 yrs)', 'MBBS (6 yrs)'],
+      focus: 'Medical Colleges',
+      link: '/study-abroad/armenia',
+      types: ['study']
     },
     {
-      name: 'Germany',
-      image: 'https://images.pexels.com/photos/109629/pexels-photo-109629.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      programs: ['EU Blue Card', 'Study Visa', 'Job Seeker Visa', 'Family Reunion Visa'],
-      types: ['immigration', 'study'],
-      link: '/immigration'
+      name: 'Mauritius',
+      image: 'https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=1600&h=900&fit=crop',
+      programs: ['MBBS (5 yrs + intern)', 'Medical Sciences'],
+      focus: 'Medical Colleges',
+      link: '/study-abroad/mauritius',
+      types: ['study']
     },
     {
-      name: 'New Zealand',
-      image: 'https://images.pexels.com/photos/724949/pexels-photo-724949.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      programs: ['Skilled Migrant Category', 'Student Visa', 'Work Visa', 'Investor Visa'],
-      types: ['immigration', 'study'],
-      link: '/immigration'
+      name: 'Kazakhstan',
+      image: 'https://images.unsplash.com/photo-1504615755583-2916b52192a3?w=1600&h=900&fit=crop',
+      programs: ['MD (6 yrs)', 'Medical Sciences'],
+      focus: 'Medical Colleges',
+      link: '/study-abroad/kazakhstan',
+      types: ['study']
     }
   ];
-  
+
   const filteredCountries = activeTab === 'all' 
     ? countries 
     : countries.filter(country => country.types.includes(activeTab));
@@ -136,14 +144,15 @@ const CountriesSection: React.FC = () => {
               name={country.name}
               image={country.image}
               programs={country.programs}
+              focus={country.focus}
               link={country.link}
             />
           ))}
         </div>
         
         <div className="text-center mt-12">
-          <Link to="/immigration" className="btn-secondary btn-lg">
-            View All Destinations
+          <Link to="/study-abroad" className="btn-secondary btn-lg">
+            View All Programs
           </Link>
         </div>
       </div>
