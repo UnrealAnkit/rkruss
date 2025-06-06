@@ -1,28 +1,23 @@
 import React from 'react';
-import { Globe } from 'lucide-react';
-import { cn } from '../../utils/cn';
+import logoImage from './rk  russ logo.png';
 
 interface LogoProps {
   variant?: 'light' | 'dark';
+  className?: string;
 }
 
-const Logo: React.FC<LogoProps> = ({ variant = 'dark' }) => {
+const Logo: React.FC<LogoProps> = ({ variant = 'dark', className }) => {
   return (
-    <div className="flex items-center">
-      <Globe 
-        className={cn(
-          "w-8 h-8 mr-2",
-          variant === 'light' ? 'text-primary-300' : 'text-primary-500'
-        )} 
+    <div className={className}>
+      <img 
+        src={logoImage} 
+        alt="RK Russ Logo" 
+        className={`w-[160px] ${variant === 'light' ? 'brightness-0 invert' : ''}`}
+        style={{ 
+          objectFit: 'contain',
+          height: '40px'
+        }}
       />
-      <span 
-        className={cn(
-          "font-heading font-bold text-lg leading-none",
-          variant === 'light' ? 'text-white' : 'text-primary-800'
-        )}
-      >
-        RK Russ
-      </span>
     </div>
   );
 };

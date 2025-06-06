@@ -48,7 +48,7 @@ const CtaSection: React.FC = () => {
     
     try {
       const form = e.currentTarget;
-      const response = await fetch("https://formspree.io/f/xrbpadwq", {
+      const response = await fetch("https://formspree.io/f/xwpbvpky", {
         method: "POST",
         body: new FormData(form),
         headers: {
@@ -69,7 +69,7 @@ const CtaSection: React.FC = () => {
   };
 
   return (
-    <section className="section-padding bg-primary-800">
+    <section id="cta-section" className="section-padding bg-primary-800">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -113,7 +113,11 @@ const CtaSection: React.FC = () => {
             <div className="p-8">
               <h3 className="text-2xl font-bold mb-6">Quick Assessment Form</h3>
               
-              <form className="space-y-4" onSubmit={handleSubmit}>
+              <form 
+                id="quick-assessment-form"
+                className="space-y-4 animate-highlight" 
+                onSubmit={handleSubmit}
+              >
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                     Full Name
