@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiEdit2, FiTrash2, FiUserPlus } from 'react-icons/fi';
+import { FiEdit2, FiTrash2, FiUserPlus, FiSearch, FiMoreVertical } from 'react-icons/fi';
 import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../contexts/AuthContext';
 import { RealtimeChannel, RealtimePostgresChangesPayload } from '@supabase/supabase-js';
@@ -7,19 +7,13 @@ import { RealtimeChannel, RealtimePostgresChangesPayload } from '@supabase/supab
 interface Profile {
   id: string;
   email: string;
-  username: string | null;
   full_name: string | null;
   avatar_url: string | null;
-  updated_at: string | null;
   created_at: string;
+  updated_at: string | null;
+  username: string | null;
   last_sign_in_at: string | null;
-  role: string;
-  online_at: string | null;
-}
-
-interface OnlinePresence {
-  user_id: string;
-  last_seen: string;
+  provider: string | null;
 }
 
 const Users: React.FC = () => {
@@ -30,6 +24,7 @@ const Users: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [totalOnline, setTotalOnline] = useState(0);
+  const [selectedUser, setSelectedUser] = useState<string | null>(null);
 
   useEffect(() => {
     fetchUsers();
@@ -37,7 +32,7 @@ const Users: React.FC = () => {
 
     // Set up real-time subscription for profiles
     const profilesSubscription = supabase
-      .channel('profiles-changes')
+      .channel('public:profiles')
       .on(
         'postgres_changes',
         {
@@ -47,36 +42,49 @@ const Users: React.FC = () => {
         },
         (payload: RealtimePostgresChangesPayload<Profile>) => {
           console.log('Profile change received:', payload);
-          
-          if (payload.eventType === 'INSERT') {
-            setUsers(currentUsers => [payload.new, ...currentUsers]);
-          } 
-          else if (payload.eventType === 'UPDATE') {
-            setUsers(currentUsers => 
-              currentUsers.map(user => 
-                user.id === payload.new.id ? payload.new : user
-              )
-            );
-          }
-          else if (payload.eventType === 'DELETE') {
-            setUsers(currentUsers => 
-              currentUsers.filter(user => user.id !== payload.old.id)
-            );
-          }
+          fetchUsers(); // Refetch all users to ensure consistency
         }
       )
       .subscribe();
 
-    // Cleanup subscriptions
     return () => {
       console.log('Cleaning up subscriptions');
       profilesSubscription.unsubscribe();
     };
   }, []);
 
+  const fetchUsers = async () => {
+    try {
+      setError(null);
+
+      // Fetch profiles with all user data
+      const { data: profiles, error: profilesError } = await supabase
+        .from('profiles')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (profilesError) {
+        console.error('Error fetching profiles:', profilesError);
+        throw profilesError;
+      }
+
+      if (!profiles) {
+        setUsers([]);
+        return;
+      }
+
+      console.log('Fetched profiles:', profiles);
+      setUsers(profiles);
+    } catch (err: any) {
+      console.error('Error fetching users:', err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const trackPresence = async () => {
     try {
-      // Subscribe to presence changes
       const presenceChannel = supabase.channel('online-users');
 
       presenceChannel
@@ -91,10 +99,9 @@ const Users: React.FC = () => {
           setTotalOnline(onlineUserIds.size);
         })
         .subscribe(async (status) => {
-          if (status === 'SUBSCRIBED') {
-            // Send presence update
+          if (status === 'SUBSCRIBED' && currentUser) {
             await presenceChannel.track({
-              user_id: currentUser?.id,
+              user_id: currentUser.id,
               online_at: new Date().toISOString(),
             });
           }
@@ -105,32 +112,6 @@ const Users: React.FC = () => {
       };
     } catch (error) {
       console.error('Error setting up presence:', error);
-    }
-  };
-
-  const fetchUsers = async () => {
-    try {
-      setError(null);
-
-      // Fetch profiles with all user data
-      const { data: profiles, error: profilesError } = await supabase
-        .from('profiles')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (profilesError) throw profilesError;
-
-      if (!profiles) {
-        setUsers([]);
-        return;
-      }
-
-      setUsers(profiles);
-    } catch (err: any) {
-      console.error('Error fetching users:', err);
-      setError(err.message);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -164,9 +145,47 @@ const Users: React.FC = () => {
       user.username?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const MobileActionMenu = ({ user }: { user: Profile }) => (
+    <div className="relative">
+      <button 
+        onClick={() => setSelectedUser(selectedUser === user.id ? null : user.id)}
+        className="p-2 hover:bg-gray-100 rounded-full"
+      >
+        <FiMoreVertical />
+      </button>
+      
+      {selectedUser === user.id && (
+        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50 py-1">
+          <button
+            className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+            onClick={() => {/* TODO: Implement edit */}}
+          >
+            <FiEdit2 /> Edit User
+          </button>
+          <button
+            className={`w-full text-left px-4 py-2 text-sm flex items-center gap-2 ${
+              user.id === currentUser?.id
+                ? 'text-gray-400 cursor-not-allowed'
+                : 'text-red-600 hover:bg-red-50'
+            }`}
+            onClick={() => {
+              if (user.id !== currentUser?.id) {
+                handleDeleteUser(user.id);
+              }
+              setSelectedUser(null);
+            }}
+            disabled={user.id === currentUser?.id}
+          >
+            <FiTrash2 /> Delete User
+          </button>
+        </div>
+      )}
+    </div>
+  );
+
   if (loading) {
     return (
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         <div className="flex justify-center items-center h-64">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
         </div>
@@ -176,7 +195,7 @@ const Users: React.FC = () => {
 
   if (error) {
     return (
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
           <p>Error loading users: {error}</p>
           <button
@@ -191,38 +210,42 @@ const Users: React.FC = () => {
   }
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
+    <div className="p-4 sm:p-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
-          <h1 className="text-3xl font-bold">User Management</h1>
-          <div className="text-gray-600 mt-1 flex items-center gap-3">
+          <h1 className="text-2xl sm:text-3xl font-bold">User Management</h1>
+          <div className="text-gray-600 mt-1 flex flex-wrap items-center gap-2 sm:gap-3">
             <span>{users.length} total users</span>
-            <span>•</span>
+            <span className="hidden sm:inline">•</span>
             <span className="flex items-center gap-2">
               <span className="inline-block w-2 h-2 rounded-full bg-green-500"></span>
               {totalOnline} online now
             </span>
           </div>
         </div>
-        <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+        <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
           <FiUserPlus />
-          Add New User
+          <span>Add New User</span>
         </button>
       </div>
 
-      <div className="bg-white rounded-lg shadow-md">
+      <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="p-4 border-b">
-          <input
-            type="text"
-            placeholder="Search users..."
-            className="w-full px-4 py-2 border rounded-lg"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          <div className="relative">
+            <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search users..."
+              className="w-full pl-10 pr-4 py-2 border rounded-lg"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full">
+          {/* Desktop Table */}
+          <table className="w-full hidden lg:table">
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -299,6 +322,35 @@ const Users: React.FC = () => {
               ))}
             </tbody>
           </table>
+
+          {/* Mobile/Tablet List */}
+          <div className="lg:hidden">
+            {filteredUsers.map((user) => (
+              <div key={user.id} className="border-b last:border-b-0">
+                <div className="p-4 flex items-center justify-between">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <span 
+                        className={`inline-block w-2 h-2 rounded-full ${
+                          onlineUsers.has(user.id) ? 'bg-green-500' : 'bg-gray-300'
+                        }`}
+                      />
+                      <span className="font-medium">{user.email}</span>
+                    </div>
+                    <div className="mt-1 text-sm text-gray-500">
+                      <div>{user.full_name || 'N/A'}</div>
+                      <div className="mt-1">
+                        Last login: {user.last_sign_in_at
+                          ? new Date(user.last_sign_in_at).toLocaleString()
+                          : 'Never'}
+                      </div>
+                    </div>
+                  </div>
+                  <MobileActionMenu user={user} />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
