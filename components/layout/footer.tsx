@@ -173,6 +173,14 @@ export function Footer() {
             </div>
           </div>
         </div>
+        {/* Designer Credit */}
+        <div className="w-full text-center border-t border-slate-800 mt-2 pt-2">
+          <span className="text-base font-thin text-slate-400">
+            designed and developed by 
+            <a href="mailto:work.ankit2@gmail.com" className="underline hover:text-accent mx-1">work.ankit2@gmail.com</a>,
+            <a href="mailto:xshankarmishra@gmail.com" className="underline hover:text-accent mx-1">xshankarmishra@gmail.com</a>
+          </span>
+        </div>
       </footer>
     </>
   );
