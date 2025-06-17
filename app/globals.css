@@ -4,7 +4,7 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
 }
 
@@ -30,7 +30,7 @@
     --secondary-foreground: 217 91% 60%;
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
-    --accent: 45 93% 47%;
+    --accent: 0 100% 50%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
@@ -56,7 +56,7 @@
     --secondary-foreground: 210 40% 98%;
     --muted: 217 32% 17%;
     --muted-foreground: 215 20% 65%;
-    --accent: 45 93% 47%;
+    --accent: 0 100% 50%;
     --accent-foreground: 222 84% 5%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;

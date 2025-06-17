@@ -77,44 +77,26 @@ export function Header() {
 
           {/* Mobile Navigation */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild className="lg:hidden">
-              <Button variant="ghost" size="icon">
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="lg:hidden">
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-80">
+            <SheetContent side="right">
               <div className="flex flex-col space-y-4">
-                <div className="flex items-center gap-2 mb-6">
-                  <Image
-                    src="/images/logo.png"
-                    alt="RK Visa Solutions Logo"
-                    width={32}
-                    height={32}
-                    className="w-8 h-8"
-                  />
-                  <span className="text-lg font-bold">RK Visa Solutions</span>
-                </div>
-                
                 {navigation.map((item) => (
                   <Button
                     key={item.name}
                     variant="ghost"
                     asChild
-                    className="justify-start text-base font-medium"
-                    onClick={() => setIsOpen(false)}
+                    className="text-base font-medium"
                   >
                     <Link href={item.href}>{item.name}</Link>
                   </Button>
                 ))}
                 <SignedOut>
                   <SignUpButton mode="modal">
-                    <Button
-                      variant="default"
-                      className="justify-start text-base font-medium"
-                      onClick={() => {
-                        setIsOpen(false);
-                      }}
-                    >
+                    <Button variant="default" size="sm">
                       Get Started
                     </Button>
                   </SignUpButton>
