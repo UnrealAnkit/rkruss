@@ -5,15 +5,29 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Globe } from 'lucide-react';
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Menu, Globe, ChevronDown, Briefcase, GraduationCap, Building } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SignUpButton, UserButton, SignedIn, SignedOut } from '@clerk/nextjs';
 import Image from 'next/image';
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Immigration', href: '/visa-solutions' },
-  { name: 'Visa Solutions', href: '/immigration' },
+  { name: 'Immigration', href: '/immigration' },
+  { 
+    name: 'Visa Solutions', 
+    href: '/immigration',
+    dropdown: [
+      { name: 'Work Visa', href: '/immigration/work-visa', icon: Briefcase },
+      { name: 'Student Visa', href: '/immigration/student-visa', icon: GraduationCap },
+      { name: 'Business Visa', href: '/immigration/business-visa', icon: Building },
+    ]
+  },
   { name: 'Colleges', href: '/colleges' },
   { name: 'About Us', href: '/about' },
   { name: 'Contact', href: '/contact' },
@@ -54,14 +68,38 @@ export function Header() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
             {navigation.map((item) => (
-              <Button
-                key={item.name}
-                variant="ghost"
-                asChild
-                className="text-base font-medium"
-              >
-                <Link href={item.href}>{item.name}</Link>
-              </Button>
+              item.dropdown ? (
+                <DropdownMenu key={item.name}>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      className="text-base font-medium flex items-center gap-1"
+                    >
+                      {item.name}
+                      <ChevronDown className="h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56">
+                    {item.dropdown.map((subItem) => (
+                      <DropdownMenuItem key={subItem.name} asChild>
+                        <Link href={subItem.href} className="flex items-center gap-2">
+                          <subItem.icon className="h-4 w-4" />
+                          {subItem.name}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Button
+                  key={item.name}
+                  variant="ghost"
+                  asChild
+                  className="text-base font-medium"
+                >
+                  <Link href={item.href}>{item.name}</Link>
+                </Button>
+              )
             ))}
             <SignedOut>
               <SignUpButton mode="modal">
@@ -85,14 +123,37 @@ export function Header() {
             <SheetContent side="right">
               <div className="flex flex-col space-y-4">
                 {navigation.map((item) => (
-                  <Button
-                    key={item.name}
-                    variant="ghost"
-                    asChild
-                    className="text-base font-medium"
-                  >
-                    <Link href={item.href}>{item.name}</Link>
-                  </Button>
+                  item.dropdown ? (
+                    <div key={item.name} className="space-y-2">
+                      <div className="text-base font-medium text-slate-700 px-3 py-2">
+                        {item.name}
+                      </div>
+                      <div className="pl-4 space-y-1">
+                        {item.dropdown.map((subItem) => (
+                          <Button
+                            key={subItem.name}
+                            variant="ghost"
+                            asChild
+                            className="w-full justify-start text-sm"
+                          >
+                            <Link href={subItem.href} className="flex items-center gap-2">
+                              <subItem.icon className="h-4 w-4" />
+                              {subItem.name}
+                            </Link>
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <Button
+                      key={item.name}
+                      variant="ghost"
+                      asChild
+                      className="text-base font-medium justify-start"
+                    >
+                      <Link href={item.href}>{item.name}</Link>
+                    </Button>
+                  )
                 ))}
                 <SignedOut>
                   <SignUpButton mode="modal">
