@@ -1,158 +1,227 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Globe, Users, Award } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+const slides = [
+  {
+    id: 1,
+    image: '/images/banner1.jpg',
+    alt: 'Immigration Services Banner 1',
+    mobilePosition: 'object-[center_25%]',
+    desktopPosition: 'object-center'
+  },
+  {
+    id: 2,
+    image: '/images/banner2.jpg',
+    alt: 'Immigration Services Banner 2',
+    mobilePosition: 'object-[center_40%]',
+    desktopPosition: 'object-center'
+  },
+  {
+    id: 3,
+    image: '/images/banner3.jpg',
+    alt: 'Immigration Services Banner 3',
+    mobilePosition: 'object-[center_35%]',
+    desktopPosition: 'object-center'
+  },
+  {
+    id: 4,
+    image: '/images/banner4.jpg',
+    alt: 'Immigration Services Banner 4',
+    mobilePosition: 'object-[center_75%]',
+    desktopPosition: 'object-center'
+  }
+];
 
 export function HeroSection() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+    
+    // Check device type
+    const checkDeviceType = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 640);
+      setIsTablet(width >= 640 && width < 1024);
+    };
+    
+    checkDeviceType();
+    window.addEventListener('resize', checkDeviceType);
+    
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener('resize', checkDeviceType);
+    };
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  const currentBanner = slides[currentSlide];
+
+  // Get appropriate object position based on device and slide
+  const getObjectPosition = () => {
+    if (isMobile) {
+      switch (currentSlide) {
+        case 0: return 'center 25%'; // Banner 1 - show top portion
+        case 1: return 'center 40%'; // Banner 2 - show upper-middle
+        case 2: return 'center 35%'; // Banner 3 - show middle-upper
+        case 3: return 'center 75%'; // Banner 4 - show bottom portion
+        default: return 'center center';
+      }
+    } else if (isTablet) {
+      switch (currentSlide) {
+        case 0: return 'center 30%';
+        case 1: return 'center 45%';
+        case 2: return 'center 40%';
+        case 3: return 'center 70%';
+        default: return 'center center';
+      }
+    }
+    return 'center center'; // Desktop
+  };
+
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 hero-gradient" />
-      <div className="absolute inset-0 bg-black/20" />
-      
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-      </div>
-
-      <div className="container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-white space-y-6"
-          >
-            <div className="space-y-4">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-medium"
-              >
-                <Award className="h-4 w-4" />
-                <span>Trusted by 5000+ Students Worldwide</span>
-              </motion.div>
-              
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-5xl lg:text-7xl font-bold leading-tight"
-              >
-                Your Trusted
-                <span className="block text-accent">Immigration</span>
-                Partner
-              </motion.h1>
-              
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-xl lg:text-2xl text-white/90 leading-relaxed max-w-2xl"
-              >
-                Your Journey Abroad Starts Here. Expert guidance for immigration, education, and visa services. We help you navigate complex immigration processes with confidence.
-              </motion.p>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <Button asChild size="lg" className="btn-accent text-lg px-8 py-4">
-                <Link href="/assessment">
-                  Book Free Consultation
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20 text-lg px-8 py-4">
-                <Link href="/about">Learn More About Us</Link>
-              </Button>
-            </motion.div>
-
-            {/* Quick Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="grid grid-cols-4 gap-6 pt-8"
-            >
-              <div className="text-center">
-                <div className="text-3xl font-bold text-accent">10+</div>
-                <div className="text-sm text-white/80">Years Experience</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-accent">5K+</div>
-                <div className="text-sm text-white/80">Successful Clients</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-accent">20+</div>
-                <div className="text-sm text-white/80">Countries Covered</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-accent">98%</div>
-                <div className="text-sm text-white/80">Success Rate</div>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Visual Elements */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="relative hidden lg:block"
-          >
-            <div className="relative">
-              {/* Main Image */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                  src="https://images.pexels.com/photos/3184460/pexels-photo-3184460.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Students studying abroad"
-                  className="w-full h-[500px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-              </div>
-
-              {/* Floating Cards */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-6 -left-6 glass-card p-4 text-white"
-              >
-                <div className="flex items-center space-x-3">
-                  <Globe className="h-8 w-8 text-accent" />
-                  <div>
-                    <div className="font-semibold">20+ Countries</div>
-                    <div className="text-sm text-white/80">Global Reach</div>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-6 -right-6 glass-card p-4 text-white"
-              >
-                <div className="flex items-center space-x-3">
-                  <Users className="h-8 w-8 text-accent" />
-                  <div>
-                    <div className="font-semibold">Expert Team</div>
-                    <div className="text-sm text-white/80">Professional Guidance</div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
+    <section className="relative w-full h-[300px] xs:h-[350px] sm:h-[420px] md:h-[520px] lg:h-[620px] xl:h-[720px] overflow-hidden bg-slate-900">
+      {/* Slides Container */}
+      <div className="relative w-full h-full">
+        {/* Current Slide */}
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src={currentBanner.image}
+            alt={currentBanner.alt}
+            fill
+            className={`object-cover transition-all duration-500 ${
+              isMobile ? currentBanner.mobilePosition + ' sm:' + currentBanner.desktopPosition :
+              isTablet ? 'object-center' :
+              currentBanner.desktopPosition
+            }`}
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
+            priority
+            quality={95}
+            onLoad={() => setIsLoaded(true)}
+            style={{
+              objectPosition: getObjectPosition(),
+              imageRendering: 'crisp-edges'
+            }}
+          />
+          {/* Mobile overlay for better contrast on all banners */}
+          {isMobile && (
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/15" />
+          )}
         </div>
       </div>
+
+      {/* Loading overlay */}
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-slate-900 flex items-center justify-center z-20">
+          <div className="animate-spin rounded-full h-6 w-6 xs:h-8 xs:w-8 sm:h-12 sm:w-12 border-b-2 border-red-500"></div>
+        </div>
+      )}
+
+      {/* Navigation Arrows - Enhanced for mobile */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-1 xs:left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white p-1.5 xs:p-2 sm:p-3 rounded-full transition-all duration-200 shadow-lg border border-white/20"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
+      </button>
+      
+      <button
+        onClick={nextSlide}
+        className="absolute right-1 xs:right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white p-1.5 xs:p-2 sm:p-3 rounded-full transition-all duration-200 shadow-lg border border-white/20"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
+      </button>
+
+      {/* Slide Indicators - Enhanced visibility */}
+      <div className="absolute bottom-14 xs:bottom-16 sm:bottom-20 md:bottom-8 left-1/2 -translate-x-1/2 z-10 flex items-center justify-center space-x-1.5 xs:space-x-2 bg-black/30 backdrop-blur-sm rounded-full px-2 xs:px-3 py-1.5 xs:py-2 border border-white/20">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`rounded-full transition-all duration-200 ${
+              index === currentSlide 
+                ? 'bg-red-500 w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-4 sm:h-4 shadow-lg' 
+                : 'bg-white/60 hover:bg-white/80 w-1.5 h-1.5 xs:w-2 xs:h-2 sm:w-3 sm:h-3'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Progress bar - Enhanced visibility */}
+      <div className="absolute bottom-10 xs:bottom-12 sm:bottom-16 md:bottom-4 left-0 right-0 z-10 px-4">
+        <div className="h-0.5 xs:h-1 bg-white/20 rounded-full overflow-hidden">
+          <motion.div
+            className="h-full bg-red-500 rounded-full"
+            initial={{ width: "0%" }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 5, ease: "linear" }}
+            key={currentSlide}
+          />
+        </div>
+      </div>
+
+      {/* Latest News Ticker - Responsive */}
+      <div className="absolute bottom-0 left-0 right-0 bg-red-600 text-white py-1.5 xs:py-2 sm:py-3 z-10">
+        <div className="container mx-auto px-2 xs:px-3 sm:px-4">
+          <div className="flex items-center w-full">
+            <span className="bg-yellow-500 text-black px-1.5 xs:px-2 sm:px-3 py-0.5 xs:py-1 rounded-full text-xs sm:text-sm font-bold flex-shrink-0">
+              Latest News
+            </span>
+            <div className="overflow-hidden flex-1 ml-1.5 xs:ml-2 sm:ml-4">
+              <motion.div
+                animate={{ x: ['100%', '-100%'] }}
+                transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+                className="whitespace-nowrap"
+              >
+                <span className="text-xs sm:text-sm font-medium">
+                  🎉 Latest Canada PNP Draw Welcome Record 3,000+ Invitations | 
+                  ✅ New Express Entry Draw Results Available | 
+                  📢 Updated Immigration Policies for 2024 | 
+                  🌟 New Student Visa Programs Available
+                </span>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile touch indicator */}
+      {isMobile && (
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10">
+          <motion.div
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="text-white/60 text-xs text-center bg-black/20 backdrop-blur-sm px-2 py-1 rounded-full border border-white/20"
+          >
+            Swipe or tap to navigate
+          </motion.div>
+        </div>
+      )}
     </section>
   );
 }

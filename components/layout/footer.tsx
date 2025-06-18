@@ -54,7 +54,7 @@ export function Footer() {
             <div className="space-y-4">
               <Link href="/" className="flex items-center gap-2">
                 <Image
-                  src="/images/logo.png"
+                  src="/images/rkrusslogo.jpg"
                   alt="RK Visa Solutions Logo"
                   width={40}
                   height={40}

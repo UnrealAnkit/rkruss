@@ -312,9 +312,9 @@ export default function StudentVisaPage() {
                     <span className="font-semibold">Free Assessment</span>
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/20 rounded-2xl px-8 py-4 backdrop-blur-sm" onClick={() => handleDownloadGuide('Student Visa')}>
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600 rounded-2xl px-8 py-4 backdrop-blur-sm bg-white/10" onClick={() => handleDownloadGuide('Student Visa')}>
                   <Download className="mr-2 h-5 w-5" />
-                  <span>Download Guide</span>
+                  <span className="font-semibold">Download Guide</span>
                 </Button>
               </div>
             </motion.div>
@@ -483,9 +483,9 @@ export default function StudentVisaPage() {
                                   <Phone className="mr-2 h-4 w-4" />
                                   Schedule Consultation
                                 </Button>
-                                <Button size="sm" variant="outline" className="border-white/30 text-white hover:bg-white/20 rounded-lg" onClick={() => handleDownloadGuide(country.name)}>
+                                <Button size="sm" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-600 rounded-lg bg-white/10" onClick={() => handleDownloadGuide(country.name)}>
                                   <Download className="mr-2 h-4 w-4" />
-                                  Download Guide
+                                  <span className="font-semibold">Download Guide</span>
                                 </Button>
                               </div>
                             </div>
