@@ -7,19 +7,19 @@ import { kazakhstanUniversities } from './kazakhstan-universities';
 import { mauritiusUniversities } from './mauritius-universities';
 
 export const allUniversities: CountryUniversities[] = [
-  russianUniversities,
-  armenianUniversities,
-  singaporeUniversities,
-  uaeUniversities,
-  kazakhstanUniversities,
-  mauritiusUniversities
+ russianUniversities,
+ armenianUniversities,
+ singaporeUniversities,
+ uaeUniversities,
+ kazakhstanUniversities,
+ mauritiusUniversities
 ];
 
-export { 
-  russianUniversities, 
-  armenianUniversities, 
-  singaporeUniversities, 
-  uaeUniversities,
-  kazakhstanUniversities,
-  mauritiusUniversities 
-}; 
+export {
+ russianUniversities,
+ armenianUniversities,
+ singaporeUniversities,
+ uaeUniversities,
+ kazakhstanUniversities,
+ mauritiusUniversities
+};
