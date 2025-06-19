@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
+import { ChevronLeft, ChevronRight, Facebook, Twitter, Instagram, Linkedin, Youtube, MessageCircle } from 'lucide-react';
 
 const slides = [
   {
@@ -34,6 +35,14 @@ const slides = [
     mobilePosition: 'object-[center_75%]',
     desktopPosition: 'object-center'
   }
+];
+
+const socialLinks = [
+  { name: 'Facebook', href: 'https://facebook.com/rkvisasolutions', icon: Facebook, color: 'bg-blue-600 hover:bg-blue-700 text-white' },
+  { name: 'Twitter', href: 'https://twitter.com/rkvisasolutions', icon: Twitter, color: 'bg-sky-500 hover:bg-sky-600 text-white' },
+  { name: 'Instagram', href: 'https://instagram.com/rkvisasolutions', icon: Instagram, color: 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white' },
+  { name: 'LinkedIn', href: 'https://linkedin.com/company/rkvisasolutions', icon: Linkedin, color: 'bg-blue-700 hover:bg-blue-800 text-white' },
+  { name: 'YouTube', href: 'https://youtube.com/@rkvisasolutions', icon: Youtube, color: 'bg-red-600 hover:bg-red-700 text-white' },
 ];
 
 export function HeroSection() {
@@ -102,7 +111,37 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative w-full h-[300px] xs:h-[350px] sm:h-[420px] md:h-[520px] lg:h-[620px] xl:h-[720px] overflow-hidden bg-slate-900">
+    <section className="relative w-full h-[300px] xs:h-[350px] sm:h-[420px] md:h-[520px] lg:h-[620px] xl:h-[720px] overflow-hidden bg-slate-900 mt-20">
+      {/* Left Side Social Media Icons */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col space-y-2">
+        {socialLinks.map((social) => {
+          const Icon = social.icon;
+          return (
+            <Link
+              key={social.name}
+              href={social.href}
+              className={`p-3 backdrop-blur-sm transition-all duration-300 ease-in-out transform hover:scale-110 ${social.color} shadow-lg hover:shadow-xl border border-white/20`}
+              aria-label={social.name}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon className="h-5 w-5" />
+            </Link>
+          );
+        })}
+      </div>
+
+      {/* WhatsApp Float Button */}
+      <Link
+        href="https://wa.me/1234567890"
+        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-110 animate-pulse"
+        aria-label="Contact us on WhatsApp"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <MessageCircle className="h-6 w-6" />
+      </Link>
+
       {/* Slides Container */}
       <div className="relative w-full h-full">
         {/* Current Slide */}

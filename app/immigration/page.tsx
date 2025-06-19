@@ -32,7 +32,13 @@ import {
   DollarSign,
   Award,
   Plane,
-  Info
+  Info,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Youtube,
+  MessageCircle
 } from 'lucide-react';
 import { LucideIcon } from 'lucide-react';
 
@@ -86,10 +92,10 @@ const visaCategories: VisaCategory[] = [
     icon: Briefcase,
     countries: {
       "Russia": {
-        name: "Russia",
-        flag: "🇷🇺",
+    name: "Russia",
+    flag: "🇷🇺",
         processingTime: "2-4 weeks",
-        successRate: "98%",
+    successRate: "98%",
         requirements: [
           "Foreign nationals with confirmed job offer from Russian employer",
           "Professional qualifications matching job requirements",
@@ -241,10 +247,10 @@ const visaCategories: VisaCategory[] = [
         validity: "Duration of study program (1-6 years)"
       },
       "Singapore": {
-        name: "Singapore",
-        flag: "🇸🇬",
+    name: "Singapore",
+    flag: "🇸🇬",
         processingTime: "2-3 weeks",
-        successRate: "95%",
+    successRate: "95%",
         requirements: [
           "Acceptance to MOE-registered institution",
           "Sufficient funds for tuition and living",
@@ -493,6 +499,14 @@ const whyChooseUs: Feature[] = [
   }
 ];
 
+const socialLinks = [
+  { name: 'Facebook', href: 'https://facebook.com/rkvisasolutions', icon: Facebook, color: 'bg-blue-600 hover:bg-blue-700 text-white' },
+  { name: 'Twitter', href: 'https://twitter.com/rkvisasolutions', icon: Twitter, color: 'bg-sky-500 hover:bg-sky-600 text-white' },
+  { name: 'Instagram', href: 'https://instagram.com/rkvisasolutions', icon: Instagram, color: 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white' },
+  { name: 'LinkedIn', href: 'https://linkedin.com/company/rkvisasolutions', icon: Linkedin, color: 'bg-blue-700 hover:bg-blue-800 text-white' },
+  { name: 'YouTube', href: 'https://youtube.com/@rkvisasolutions', icon: Youtube, color: 'bg-red-600 hover:bg-red-700 text-white' },
+];
+
 export default function ImmigrationPage() {
   const [selectedVisaType, setSelectedVisaType] = useState(visaCategories[0]);
   const [selectedCountry, setSelectedCountry] = useState(Object.keys(visaCategories[0].countries)[0]);
@@ -549,7 +563,37 @@ export default function ImmigrationPage() {
       
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+        <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 mt-20">
+          {/* Left Side Social Media Icons */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col space-y-2">
+            {socialLinks.map((social) => {
+              const Icon = social.icon;
+              return (
+                <Link
+                  key={social.name}
+                  href={social.href}
+                                     className={`p-3 backdrop-blur-sm transition-all duration-300 ease-in-out transform hover:scale-110 ${social.color} shadow-lg hover:shadow-xl border border-white/20`}
+                  aria-label={social.name}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon className="h-5 w-5" />
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* WhatsApp Float Button */}
+          <Link
+            href="https://wa.me/1234567890"
+            className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-110 animate-pulse"
+            aria-label="Contact us on WhatsApp"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <MessageCircle className="h-6 w-6" />
+          </Link>
+
           <div className="absolute inset-0">
             <Image
               src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop"
@@ -606,7 +650,7 @@ export default function ImmigrationPage() {
                 </h2>
                 <p className="text-slate-600 max-w-3xl mx-auto text-lg leading-relaxed">
                   Choose your visa type and explore options across different countries
-                </p>
+              </p>
               </motion.div>
             </div>
 
@@ -643,28 +687,28 @@ export default function ImmigrationPage() {
                           onValueChange={setSelectedCountry}
                         >
                           <SelectTrigger className="w-full bg-white/10 border-white/20 text-white">
-                            <SelectValue>
+                    <SelectValue>
                               <div className="flex items-center gap-2">
                                 <span className="text-2xl">
                                   {category.countries[selectedCountry].flag}
                                 </span>
                                 <span>{category.countries[selectedCountry].name}</span>
-                              </div>
-                            </SelectValue>
-                          </SelectTrigger>
+                      </div>
+                    </SelectValue>
+                  </SelectTrigger>
                           <SelectContent>
                             {Object.entries(category.countries).map(([key, country]) => (
                               <SelectItem key={key} value={key}>
                                 <div className="flex items-center gap-2">
                                   <span className="text-xl">{country.flag}</span>
                                   <span>{country.name}</span>
-                                </div>
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
 
                     <div className="grid gap-6">
                       <Card className="rounded-2xl border-0 shadow-lg">
@@ -677,22 +721,22 @@ export default function ImmigrationPage() {
                             <div className="bg-blue-50 p-4 rounded-xl">
                               <div className="text-sm text-blue-600">Processing Time</div>
                               <div className="font-bold">{category.countries[selectedCountry].processingTime}</div>
-                            </div>
+                </div>
                             <div className="bg-green-50 p-4 rounded-xl">
                               <div className="text-sm text-green-600">Success Rate</div>
                               <div className="font-bold">{category.countries[selectedCountry].successRate}</div>
-                            </div>
+                    </div>
                             {category.countries[selectedCountry].validity && (
                               <div className="bg-purple-50 p-4 rounded-xl">
                                 <div className="text-sm text-purple-600">Validity</div>
                                 <div className="font-bold">{category.countries[selectedCountry].validity}</div>
-                              </div>
+                  </div>
                             )}
                             {category.countries[selectedCountry].salary && (
                               <div className="bg-amber-50 p-4 rounded-xl">
                                 <div className="text-sm text-amber-600">Minimum Salary</div>
                                 <div className="font-bold">{category.countries[selectedCountry].salary}</div>
-                              </div>
+                    </div>
                             )}
                           </div>
                         </CardHeader>
@@ -701,7 +745,7 @@ export default function ImmigrationPage() {
                             {category.countries[selectedCountry].requirements && (
                               <AccordionItem value="requirements">
                                 <AccordionTrigger>Requirements</AccordionTrigger>
-                                <AccordionContent>
+                            <AccordionContent>
                                   <ul className="space-y-2">
                                     {category.countries[selectedCountry].requirements?.map((req, index) => (
                                       <li key={index} className="flex items-start gap-2 bg-slate-50 p-3 rounded-lg">
@@ -709,29 +753,29 @@ export default function ImmigrationPage() {
                                         <span>{req}</span>
                                       </li>
                                     ))}
-                                  </ul>
-                                </AccordionContent>
-                              </AccordionItem>
-                            )}
+                                </ul>
+                            </AccordionContent>
+                          </AccordionItem>
+                        )}
                             {category.countries[selectedCountry].documents && (
                               <AccordionItem value="documents">
                                 <AccordionTrigger>Required Documents</AccordionTrigger>
-                                <AccordionContent>
+                            <AccordionContent>
                                   <ul className="space-y-2">
                                     {category.countries[selectedCountry].documents?.map((doc, index) => (
                                       <li key={index} className="flex items-start gap-2 bg-blue-50 p-3 rounded-lg">
                                         <FileText className="h-5 w-5 text-blue-500 mt-0.5" />
                                         <span>{doc}</span>
-                                      </li>
+                                   </li>
                                     ))}
-                                  </ul>
-                                </AccordionContent>
-                              </AccordionItem>
+                                </ul>
+                            </AccordionContent>
+                          </AccordionItem>
                             )}
                             {category.countries[selectedCountry].benefits && (
                               <AccordionItem value="benefits">
                                 <AccordionTrigger>Benefits</AccordionTrigger>
-                                <AccordionContent>
+                            <AccordionContent>
                                   <ul className="space-y-2">
                                     {category.countries[selectedCountry].benefits?.map((benefit, index) => (
                                       <li key={index} className="flex items-start gap-2 bg-green-50 p-3 rounded-lg">
@@ -739,14 +783,14 @@ export default function ImmigrationPage() {
                                         <span>{benefit}</span>
                                       </li>
                                     ))}
-                                  </ul>
-                                </AccordionContent>
-                              </AccordionItem>
+                                </ul>
+                            </AccordionContent>
+                          </AccordionItem>
                             )}
                             {category.countries[selectedCountry].specialNotes && (
                               <AccordionItem value="special-notes">
                                 <AccordionTrigger>Special Notes</AccordionTrigger>
-                                <AccordionContent>
+                            <AccordionContent>
                                   <ul className="space-y-2">
                                     {category.countries[selectedCountry].specialNotes?.map((note, index) => (
                                       <li key={index} className="flex items-start gap-2 bg-purple-50 p-3 rounded-lg">
@@ -754,19 +798,19 @@ export default function ImmigrationPage() {
                                         <span>{note}</span>
                                       </li>
                                     ))}
-                                  </ul>
-                                </AccordionContent>
-                              </AccordionItem>
+                          </ul>
+                            </AccordionContent>
+                          </AccordionItem>
                             )}
                           </Accordion>
                         </CardContent>
                       </Card>
-                    </div>
+                              </div>
                   </TabsContent>
                 ))}
               </Tabs>
-            </div>
-          </div>
+                          </div>
+                                </div>
         </section>
 
         {/* Stats Section */}
@@ -785,14 +829,14 @@ export default function ImmigrationPage() {
                     <div className="flex justify-center mb-4 sm:mb-6">
                       <div className="p-4 sm:p-5 lg:p-6 rounded-2xl bg-gradient-to-br from-blue-100 to-indigo-100">
                         <stat.icon className={`h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 ${stat.color}`} />
-                      </div>
-                    </div>
+                              </div>
+                              </div>
                     <div className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">{stat.value}</div>
                     <div className="text-slate-600 font-medium text-sm sm:text-base lg:text-lg">{stat.label}</div>
+                            </div>
+                </motion.div>
+                    ))}
                   </div>
-                    </motion.div>
-              ))}
-              </div>
           </div>
         </section>
 

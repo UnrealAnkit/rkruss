@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Globe, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Globe, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
 import Image from 'next/image';
 
 const quickLinks = [
@@ -19,29 +19,30 @@ const services = [
 ];
 
 const socialLinks = [
-  { name: 'Facebook', href: '#', icon: Facebook },
-  { name: 'Twitter', href: '#', icon: Twitter },
-  { name: 'Instagram', href: '#', icon: Instagram },
-  { name: 'LinkedIn', href: '#', icon: Linkedin },
+  { name: 'Facebook', href: 'https://facebook.com/rkvisasolutions', icon: Facebook, color: 'bg-blue-600 hover:bg-blue-700 text-white' },
+  { name: 'Twitter', href: 'https://twitter.com/rkvisasolutions', icon: Twitter, color: 'bg-sky-500 hover:bg-sky-600 text-white' },
+  { name: 'Instagram', href: 'https://instagram.com/rkvisasolutions', icon: Instagram, color: 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white' },
+  { name: 'LinkedIn', href: 'https://linkedin.com/company/rkvisasolutions', icon: Linkedin, color: 'bg-blue-700 hover:bg-blue-800 text-white' },
+  { name: 'YouTube', href: 'https://youtube.com/@rkvisasolutions', icon: Youtube, color: 'bg-red-600 hover:bg-red-700 text-white' },
 ];
 
 export function Footer() {
   return (
     <>
       {/* Floating Social Bar for Mobile */}
-      <div className="fixed right-2 top-1/3 z-50 flex flex-col items-center space-y-3 bg-white/80 rounded-full p-2 shadow-lg border border-slate-200 md:hidden">
+      <div className="fixed right-3 top-1/3 z-50 flex flex-col items-center space-y-2 bg-white/95 backdrop-blur-sm rounded-2xl p-3 shadow-xl border border-slate-200/50 md:hidden">
         {socialLinks.map((social) => {
           const Icon = social.icon;
           return (
             <Link
               key={social.name}
               href={social.href}
-              className="text-slate-600 hover:text-accent transition-colors"
+              className={`p-2.5 rounded-xl transition-all duration-300 ease-in-out transform hover:scale-110 ${social.color} border border-transparent hover:border-white/20 shadow-sm hover:shadow-md`}
               aria-label={social.name}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Icon className="h-6 w-6" />
+              <Icon className="h-5 w-5" />
             </Link>
           );
         })}
@@ -54,7 +55,7 @@ export function Footer() {
             <div className="space-y-4">
               <Link href="/" className="flex items-center gap-2">
                 <Image
-                  src="/images/rkrusslogo.jpg"
+                  src="/images/russia visa solutions.png"
                   alt="RK Visa Solutions Logo"
                   width={40}
                   height={40}
@@ -65,15 +66,17 @@ export function Footer() {
               <p className="text-slate-300 text-sm leading-6">
                 Your trusted partner for immigration and education services. We help students and professionals achieve their global aspirations.
               </p>
-              <div className="flex space-x-4">
+              <div className="flex space-x-3">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
                   return (
                     <Link
                       key={social.name}
                       href={social.href}
-                      className="text-slate-400 hover:text-accent transition-colors"
+                                              className={`p-2.5 rounded-xl transition-all duration-300 ease-in-out transform hover:scale-110 ${social.color} border border-transparent hover:border-white/10 shadow-sm hover:shadow-md`}
                       aria-label={social.name}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <Icon className="h-5 w-5" />
                     </Link>

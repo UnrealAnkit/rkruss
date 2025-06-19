@@ -72,7 +72,7 @@ export default function CollegesPage() {
   return (
     <main className="bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+      <section className="relative pt-24 pb-20 overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
         <div className="absolute inset-0 bg-grid-white/10" />
         <Container>
           <div className="relative">

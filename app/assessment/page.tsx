@@ -138,7 +138,7 @@ export default function AssessmentPage() {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-16 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+        <section className="relative pt-24 pb-16 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

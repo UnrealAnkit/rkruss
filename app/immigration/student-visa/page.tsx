@@ -275,7 +275,7 @@ export default function StudentVisaPage() {
       
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900">
+        <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 mt-20">
           <div className="absolute inset-0">
             <Image
               src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop"
