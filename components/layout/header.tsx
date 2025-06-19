@@ -48,9 +48,9 @@ export function Header() {
             <Image
               src="/images/russia visa solutions.png"
               alt="RK Visa Solutions Logo"
-              width={100}
-              height={100}
-              className="w-24 h-24"
+              width={120}
+              height={120}
+              className="w-32 h-32 sm:w-28 sm:h-28 md:w-24 md:h-24 lg:w-20 lg:h-20"
             />
           </Link>
 

@@ -57,9 +57,9 @@ export function Footer() {
                 <Image
                   src="/images/russia visa solutions.png"
                   alt="RK Visa Solutions Logo"
-                  width={40}
-                  height={40}
-                  className="w-10 h-10"
+                  width={80}
+                  height={80}
+                  className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-22 lg:h-22"
                 />
                 <span className="text-xl font-bold">RK Visa Solutions</span>
               </Link>
