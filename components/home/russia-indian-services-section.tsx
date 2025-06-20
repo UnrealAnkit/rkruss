@@ -314,7 +314,7 @@ export function RussiaIndianServicesSection() {
                 Free NEET Assessment
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-orange-600 font-semibold">
+            <Button asChild size="lg" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-orange-600 font-semibold transition-all duration-300">
               <Link href="tel:+919999999999">
                 <Phone className="mr-2 h-5 w-5" />
                 Call India Helpline
