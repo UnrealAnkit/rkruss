@@ -292,15 +292,11 @@ export default function WorkVisaPage() {
  Unlock international career opportunities with our comprehensive work visa services across multiple countries. From tech hubs to emerging markets, we'll help you navigate the path to your dream job abroad.
  </p>
 
- <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+ <div className="flex justify-center mb-8">
  <Button size="lg" asChild className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-2xl px-8 py-4 shadow-2xl transform hover:scale-105 transition-all duration-300">
  <Link href="/assessment">
  <span className="font-semibold">Free Assessment</span>
  </Link>
- </Button>
- <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 rounded-2xl px-8 py-4 backdrop-blur-sm bg-white/10" onClick={() => handleDownloadGuide('Work Visa')}>
-                   <Download className="mr-2 h-5 w-5" />
-                  <span className="font-semibold">Get Started</span>
  </Button>
  </div>
  </motion.div>
@@ -464,14 +460,10 @@ export default function WorkVisaPage() {
  <p className="text-blue-100 mb-5">
  Our immigration experts are ready to guide you through every step of the work visa application process for {country.name}.
  </p>
- <div className="flex flex-col sm:flex-row gap-3">
+ <div className="flex justify-center">
  <Button size="sm" className="bg-white text-blue-600 hover:bg-blue-50 rounded-lg" onClick={handleScheduleConsultation}>
  <Phone className="mr-2 h-4 w-4" />
  Schedule Consultation
- </Button>
- <Button size="sm" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 rounded-lg bg-white/10" onClick={() => handleDownloadGuide(country.name)}>
-                     <Download className="mr-2 h-4 w-4" />
-                    <span className="font-semibold">Get Started</span>
  </Button>
  </div>
  </div>

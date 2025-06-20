@@ -51,29 +51,7 @@ const values = [
  }
 ];
 
-const team = [
- {
- name: 'Rajesh Kumar',
- role: 'Founder & CEO',
- experience: '15+ years',
- specialization: 'Immigration Law & Policy',
- image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400'
- },
- {
- name: 'Priya Sharma',
- role: 'Head of Student Services',
- experience: '12+ years',
- specialization: 'Education Consulting',
- image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400'
- },
- {
- name: 'Michael Chen',
- role: 'Visa Specialist',
- experience: '10+ years',
- specialization: 'Visa Processing',
- image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400'
- }
-];
+
 
 export default function AboutPage() {
  const ref = useRef(null);
@@ -94,15 +72,15 @@ export default function AboutPage() {
  transition={{ duration: 0.8 }}
  className="max-w-4xl"
  >
- <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+ <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">
  About RK Visa Solutions
  </h1>
- <p className="text-lg text-slate-600 leading-relaxed mb-8">
+ <p className="text-lg text-white/90 leading-relaxed mb-8">
  Founded in 2014, RK Visa Solutions began with a simple mission: to make international education and immigration accessible to everyone. What started as a small consulting firm has grown into a trusted partner for thousands of students and professionals seeking opportunities abroad.
  </p>
 
  <div className="flex flex-col sm:flex-row gap-4">
- <Button size="lg" className="btn-accent">
+ <Button size="lg" className="bg-primary text-white hover:bg-primary/90">
  Our Services
  </Button>
  <Button size="lg" variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
@@ -232,60 +210,7 @@ export default function AboutPage() {
  </div>
  </section>
 
- {/* Team Section */}
- <section className="section-padding">
- <div className="container">
- <motion.div
- initial={{ opacity: 0, y: 30 }}
- animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
- transition={{ duration: 0.8 }}
- className="text-center mb-16"
- >
- <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
- Meet Our Team
- </h2>
- <p className="text-xl text-slate-600 max-w-3xl mx-auto">
- Our experienced professionals are dedicated to helping you achieve your international goals.
- </p>
- </motion.div>
 
- <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
- {team.map((member, index) => (
- <motion.div
- key={member.name}
- initial={{ opacity: 0, y: 30 }}
- animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
- transition={{ duration: 0.8, delay: index * 0.1 }}
- >
- <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
- <div className="relative">
- <img
- src={member.image}
- alt={member.name}
- className="w-full h-64 object-cover"
- />
- <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
- </div>
- <CardContent className="p-6 text-center">
- <h3 className="text-xl font-bold text-slate-900 mb-1">
- {member.name}
- </h3>
- <p className="text-primary font-medium mb-2">{member.role}</p>
- <div className="space-y-2">
- <Badge variant="secondary" className="text-xs">
- {member.experience}
- </Badge>
- <p className="text-sm text-slate-600">
- {member.specialization}
- </p>
- </div>
- </CardContent>
- </Card>
- </motion.div>
- ))}
- </div>
- </div>
- </section>
 
  {/* CTA Section */}
  <section className="section-padding bg-gradient-to-r from-primary/5 to-accent/5">

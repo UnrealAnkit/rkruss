@@ -107,15 +107,12 @@ export function HeroSection() {
  default: return 'center center';
  }
  }
- // Desktop positioning
- switch (currentSlide) {
- case 2: return 'center 20%'; // Banner 3 - show top portion (fixed)
- default: return 'center center';
- }
+ // Desktop/Laptop positioning - fixed to center for all banners
+ return 'center center';
  };
 
  return (
- <section className="relative w-full h-[240px] xs:h-[280px] sm:h-[320px] md:h-[360px] lg:h-screen xl:h-screen overflow-hidden bg-slate-900 mt-20 md:mt-0 lg:mt-0">
+ <section className="relative w-full h-[240px] xs:h-[280px] sm:h-[320px] md:h-[360px] lg:h-screen xl:h-screen overflow-hidden bg-slate-900 mt-20 md:mt-0 lg:mt-20 xl:mt-20">
  {/* Left Side Social Media Icons */}
  <div className="absolute left-0 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col space-y-2">
  {socialLinks.map((social) => {
@@ -138,7 +135,7 @@ export function HeroSection() {
        {/* WhatsApp Float Button */}
       <Link
         href="https://wa.me/1234567890"
-        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-110"
+        className="fixed bottom-20 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-110"
         aria-label="Contact us on WhatsApp"
         target="_blank"
         rel="noopener noreferrer"
@@ -149,9 +146,9 @@ export function HeroSection() {
  </Link>
 
  {/* Slides Container */}
- <div className="relative w-full h-full lg:pt-20">
+ <div className="relative w-full h-full lg:pt-0 lg:h-[calc(100vh-5rem)] xl:h-[calc(100vh-5rem)]">
  {/* Current Slide */}
- <div className="absolute inset-0 w-full h-full lg:top-20">
+ <div className="absolute inset-0 w-full h-full lg:top-0 lg:h-[calc(100vh-5rem)] xl:h-[calc(100vh-5rem)]">
  <Image
  src={currentBanner.image}
  alt={currentBanner.alt}
@@ -159,15 +156,17 @@ export function HeroSection() {
  className={`object-cover transition-all duration-500 ${
  isMobile ? currentBanner.mobilePosition + ' sm:' + currentBanner.desktopPosition :
  isTablet ? 'object-center' :
- currentBanner.desktopPosition
+ 'object-cover'
  }`}
  sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
  priority
  quality={95}
  onLoad={() => setIsLoaded(true)}
  style={{
- objectPosition: getObjectPosition(),
- imageRendering: 'crisp-edges'
+ objectPosition: isMobile || isTablet ? getObjectPosition() : 'center center',
+ imageRendering: 'crisp-edges',
+ transform: 'scale(1.0)',
+ objectFit: 'cover'
  }}
  />
  {/* Mobile overlay for better contrast on all banners */}
@@ -201,21 +200,7 @@ export function HeroSection() {
  <ChevronRight className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
  </button>
 
- {/* Slide Indicators - Enhanced visibility */}
- <div className="absolute bottom-14 xs:bottom-16 sm:bottom-20 md:bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex items-center justify-center space-x-1.5 xs:space-x-2 bg-black/30 backdrop-blur-sm rounded-full px-2 xs:px-3 py-1.5 xs:py-2 border border-white/20">
- {slides.map((_, index) => (
- <button
- key={index}
- onClick={() => goToSlide(index)}
- className={`rounded-full transition-all duration-200 ${
- index === currentSlide
- ? 'bg-teal-500 w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-4 sm:h-4 shadow-lg'
- : 'bg-white/60 hover:bg-white/80 w-1.5 h-1.5 xs:w-2 xs:h-2 sm:w-3 sm:h-3'
- }`}
- aria-label={`Go to slide ${index + 1}`}
- />
- ))}
- </div>
+
 
  {/* Progress bar - Enhanced visibility */}
  <div className="absolute bottom-10 xs:bottom-12 sm:bottom-16 md:bottom-4 left-0 right-0 z-10 px-4">

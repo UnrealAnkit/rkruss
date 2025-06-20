@@ -560,9 +560,9 @@ export default function VisaSolutionsPage() {
  size="lg"
  variant="outline"
  className="border-white/30 text-white hover:bg-white/20 h-14 px-8 text-lg backdrop-blur-sm"
- onClick={() => handleDownloadGuide('Immigration')}
+ onClick={handleScheduleConsultation}
  >
-                   <Download className="mr-2 h-5 w-5" />
+                   <Calendar className="mr-2 h-5 w-5" />
                   Get Started
  </Button>
  </div>
@@ -688,14 +688,6 @@ export default function VisaSolutionsPage() {
  <div className="space-y-4">
  <Button
  className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white h-12"
- onClick={() => handleDownloadGuide(selectedCountry.name)}
- >
- <Download className="mr-2 h-5 w-5" />
- Download Country Guide
- </Button>
- <Button
- variant="outline"
- className="w-full h-12 hover:bg-slate-50"
  onClick={handleScheduleConsultation}
  >
  <Calendar className="mr-2 h-5 w-5" />

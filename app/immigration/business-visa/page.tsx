@@ -15,7 +15,6 @@ import {
  CheckCircle,
  FileText,
  Phone,
- Download,
  Clock,
  TrendingUp,
  DollarSign,
@@ -196,13 +195,7 @@ const businessVisaCountries: BusinessVisaCountry[] = [
 
 export default function BusinessVisaPage() {
  const [selectedCountry, setSelectedCountry] = useState(businessVisaCountries[0]);
- const [showDownloadMessage, setShowDownloadMessage] = useState(false);
  const [showContactMessage, setShowContactMessage] = useState(false);
-
- const handleDownloadGuide = (countryName: string) => {
- setShowDownloadMessage(true);
- setTimeout(() => setShowDownloadMessage(false), 3000);
- };
 
  const handleScheduleConsultation = () => {
  setShowContactMessage(true);
@@ -256,10 +249,7 @@ export default function BusinessVisaPage() {
  Schedule Consultation
  <Phone className="ml-2 h-5 w-5" />
  </Button>
- <Button size="lg" variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
- Download Business Guide
- <Download className="ml-2 h-5 w-5" />
- </Button>
+
  </motion.div>
  </div>
  </div>
@@ -459,19 +449,11 @@ export default function BusinessVisaPage() {
  initial={{ opacity: 0, y: 30 }}
  animate={{ opacity: 1, y: 0 }}
  transition={{ duration: 0.6, delay: 0.4 }}
- className="flex flex-col sm:flex-row gap-4 mt-8"
+ className="flex justify-center mt-8"
  >
- <Button
- onClick={() => handleDownloadGuide(country.name)}
- className="bg-green-600 hover:bg-green-700 text-white flex-1"
- >
- <Download className="mr-2 h-4 w-4" />
- Download {country.name} Business Guide
- </Button>
  <Button
  onClick={handleScheduleConsultation}
- variant="outline"
- className="border-green-600 text-green-600 hover:bg-green-50 flex-1"
+ className="bg-green-600 hover:bg-green-700 text-white px-8"
  >
  <Phone className="mr-2 h-4 w-4" />
  Schedule Consultation
@@ -484,20 +466,6 @@ export default function BusinessVisaPage() {
  </section>
 
  {/* Success Messages */}
- {showDownloadMessage && (
- <motion.div
- initial={{ opacity: 0, y: 50 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: 50 }}
- className="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50"
- >
- <p className="flex items-center gap-2">
- <CheckCircle className="h-5 w-5" />
- Guide download started! Check your downloads folder.
- </p>
- </motion.div>
- )}
-
  {showContactMessage && (
  <motion.div
  initial={{ opacity: 0, y: 50 }}

@@ -15,7 +15,7 @@ export const kazakhstanUniversities: CountryUniversities = {
  accommodation: "≈$2,000 per year",
  duration: "4 years",
  type: "Government",
- image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800",
+ image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80",
  features: [
  "Global partnerships",
  "Research excellence",
@@ -33,7 +33,7 @@ export const kazakhstanUniversities: CountryUniversities = {
  accommodation: "≈$1,000 per year",
  duration: "4 years",
  type: "Government",
- image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800",
+ image: "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?auto=format&fit=crop&w=800&q=80",
  features: [
  "Historic prestige",
  "Research facilities",
@@ -51,7 +51,7 @@ export const kazakhstanUniversities: CountryUniversities = {
  accommodation: "≈$1,500 per year",
  duration: "4 years",
  type: "Private",
- image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800",
+ image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80",
  features: [
  "British partnerships",
  "Industry connections",
@@ -69,7 +69,7 @@ export const kazakhstanUniversities: CountryUniversities = {
  accommodation: "≈$1,800 per year",
  duration: "4 years",
  type: "Private",
- image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800",
+ image: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80",
  features: [
  "American curriculum",
  "Scholarship options",
@@ -87,7 +87,7 @@ export const kazakhstanUniversities: CountryUniversities = {
  accommodation: "≈$1,200 per year",
  duration: "4 years",
  type: "Government",
- image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800",
+ image: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=800&q=80",
  features: [
  "Technical excellence",
  "Research facilities",
@@ -105,7 +105,7 @@ export const kazakhstanUniversities: CountryUniversities = {
  accommodation: "≈$1,400 per year",
  duration: "4 years",
  type: "Private",
- image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800",
+ image: "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=800&q=80",
  features: [
  "IT specialization",
  "Modern curriculum",
@@ -123,7 +123,7 @@ export const kazakhstanUniversities: CountryUniversities = {
  accommodation: "≈$1,200 per year",
  duration: "4 years",
  type: "Private",
- image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800",
+ image: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=80",
  features: [
  "Business focus",
  "Student diversity",

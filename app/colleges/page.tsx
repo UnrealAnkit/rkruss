@@ -43,7 +43,7 @@ const countryCards = [
  {
  title: 'Kazakhstan',
  subtitle: 'Technical & Medical Education',
- image: 'https://images.unsplash.com/photo-1559888867-a4f9b9b0c563?auto=format&fit=crop&w=800',
+ image: 'https://images.unsplash.com/photo-1655720033654-a4239dd42d10?auto=format&fit=crop&w=800&q=80',
  href: '#kazakhstan',
  flag: '🇰🇿'
  },

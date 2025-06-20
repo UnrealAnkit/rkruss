@@ -15,7 +15,7 @@ export const russianUniversities: CountryUniversities = {
  accommodation: "≈$1,200",
  duration: "MBBS (6 yrs, MD)",
  type: "Government",
- image: "<a id='ADPu0pTfSQBEkIUJaUNLCg' class='gie-single' href='http://www.gettyimages.com/detail/822712960' target='_blank' style='color:#a7a7a7;text-decoration:none;font-weight:normal !important;border:none;display:inline-block;'>Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'ADPu0pTfSQBEkIUJaUNLCg',sig:'Yb7s21qfK4YRHIxV7kOvEIV7TSb3IfHlqqenkl-82bk=',w:'591px',h:'594px',items:'822712960',caption: true ,tld:'com',is360: false })});</script><script src='//embed-cdn.gettyimages.com/widgets.js' charset='utf-8' async></script>",
+ image: "/images/lsu university.webp",
  features: [
  "Strong research facilities",
  "International student support",
@@ -33,7 +33,7 @@ export const russianUniversities: CountryUniversities = {
  accommodation: "≈$300",
  duration: "MBBS (5 yrs + intern)",
  type: "Government",
- image: "<a id='2e1aXxXdQVx7sFscPNN-Tw' class='gie-single' href='http://www.gettyimages.com/detail/1222710512' target='_blank' style='color:#a7a7a7;text-decoration:none;font-weight:normal !important;border:none;display:inline-block;'>Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'2e1aXxXdQVx7sFscPNN-Tw',sig:'3sumgAs5ogrSjTbiihcjRttLvgVmTrOFyzU2KFQ9CFg=',w:'594px',h:'396px',items:'1222710512',caption: true ,tld:'com',is360: false })});</script><script src='//embed-cdn.gettyimages.com/widgets.js' charset='utf-8' async></script>",
+ image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80",
  features: [
  "Dual degree programs",
  "Research opportunities",
@@ -51,7 +51,7 @@ export const russianUniversities: CountryUniversities = {
  accommodation: "≈$800",
  duration: "6 years",
  type: "Government",
- image: "<a id='meDbX5ALRE9bTS2yA3WN6A' class='gie-single' href='http://www.gettyimages.com/detail/977680250' target='_blank' style='color:#a7a7a7;text-decoration:none;font-weight:normal !important;border:none;display:inline-block;'>Embed from Getty Images</a><script>window.gie=window.gie||function(c){(gie.q=gie.q||[]).push(c)};gie(function(){gie.widgets.load({id:'meDbX5ALRE9bTS2yA3WN6A',sig:'tp_IXQOCxHWIoLnsdmI3-UgxbrNiOrqfqgoJdk3hRxg=',w:'509px',h:'339px',items:'977680250',caption: true ,tld:'com',is360: false })});</script><script src='//embed-cdn.gettyimages.com/widgets.js' charset='utf-8' async></script>",
+ image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80",
  features: [
  "Industry partnerships",
  "Research institutes",
@@ -69,7 +69,7 @@ export const russianUniversities: CountryUniversities = {
  accommodation: "≈$200",
  duration: "6 years",
  type: "Government",
- image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800",
+ image: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=800&q=80",
  features: [
  "Research opportunities",
  "Affordable education",
@@ -87,7 +87,7 @@ export const russianUniversities: CountryUniversities = {
  accommodation: "≈$120",
  duration: "MBBS (6 yrs + intern)",
  type: "Government",
- image: "",
+ image: "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&w=800&q=80",
  features: [
  "Clinical rotations",
  "Research facilities",

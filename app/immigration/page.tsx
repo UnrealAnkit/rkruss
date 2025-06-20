@@ -586,7 +586,7 @@ export default function ImmigrationPage() {
  {/* WhatsApp Float Button */}
  <Link
  href="https://wa.me/1234567890"
- className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-110"
+ className="fixed bottom-20 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-110"
  aria-label="Contact us on WhatsApp"
  target="_blank"
  rel="noopener noreferrer"

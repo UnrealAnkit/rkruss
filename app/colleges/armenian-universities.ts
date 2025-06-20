@@ -51,7 +51,7 @@ export const armenianUniversities: CountryUniversities = {
  accommodation: "≈$250",
  duration: "6 years",
  type: "Government",
- image: "https://images.unsplash.com/photo-1581056771107-24758e5520de?auto=format&fit=crop&w=800",
+ image: "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?auto=format&fit=crop&w=800&q=80",
  features: [
  "WHO recognition",
  "Clinical training",
