@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Globe, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
+import { Globe, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Youtube, MessageCircle } from 'lucide-react';
 import Image from 'next/image';
 
 const quickLinks = [
@@ -133,13 +133,24 @@ export function Footer() {
  </p>
  </div>
  </div>
- <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3">
  <Phone className="h-5 w-5 text-accent flex-shrink-0" />
  <Link
  href="tel:+74951234567"
  className="text-sm text-slate-300 hover:text-accent transition-colors"
  >
  +7 (495) 123-4567
+ </Link>
+ </div>
+ <div className="flex items-center space-x-3">
+ <MessageCircle className="h-5 w-5 text-accent flex-shrink-0" />
+ <Link
+ href="https://wa.me/79966651652"
+ className="text-sm text-slate-300 hover:text-accent transition-colors"
+ target="_blank"
+ rel="noopener noreferrer"
+ >
+ +7 (996) 665-1652
  </Link>
  </div>
  <div className="flex items-center space-x-3">

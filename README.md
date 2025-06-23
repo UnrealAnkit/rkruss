@@ -227,6 +227,7 @@ We welcome contributions! Please follow these steps:
 - **Website:** [rkruss.vercel.app](https://rkruss.vercel.app)
 - **Email:** info@rkruss.com
 - **Phone:** +7 (495) 123-4567
+- **WhatsApp:** +7 (996) 665-1652
 
 ## 📄 License
 

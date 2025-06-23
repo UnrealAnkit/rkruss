@@ -585,7 +585,7 @@ export default function ImmigrationPage() {
 
  {/* WhatsApp Float Button */}
  <Link
- href="https://wa.me/1234567890"
+ href="https://wa.me/79966651652"
  className="fixed bottom-20 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-110"
  aria-label="Contact us on WhatsApp"
  target="_blank"
@@ -629,10 +629,10 @@ export default function ImmigrationPage() {
  <span className="font-semibold">Free Assessment</span>
  </Link>
  </Button>
- <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/20 rounded-2xl px-8 py-4 sm:px-10 sm:py-5 backdrop-blur-sm text-base sm:text-lg" onClick={() => handleDownloadGuide('General Immigration')}>
+ {/* <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/20 rounded-2xl px-8 py-4 sm:px-10 sm:py-5 backdrop-blur-sm text-base sm:text-lg" onClick={() => handleDownloadGuide('General Immigration')}>
                    <Download className="mr-2 h-5 w-5" />
                   <span>Get Started</span>
- </Button>
+ </Button> */}
  </div>
  </motion.div>
  </div>
@@ -983,9 +983,9 @@ export default function ImmigrationPage() {
  <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 rounded-2xl px-8 py-4 font-semibold" onClick={handleScheduleConsultation}>
  Start Your Journey
  </Button>
- <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/20 rounded-2xl px-8 py-4" onClick={handleLearnMore}>
+ {/* <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/20 rounded-2xl px-8 py-4" onClick={handleLearnMore}>
  Learn More
- </Button>
+ </Button> */}
  </div>
  </div>
  </motion.div>
@@ -1047,10 +1047,10 @@ export default function ImmigrationPage() {
  <span className="text-lg font-semibold">Schedule a Call</span>
  </Link>
  </Button>
- <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/20 rounded-2xl px-8 py-4 backdrop-blur-sm" onClick={handleSendMessage}>
+ {/* <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/20 rounded-2xl px-8 py-4 backdrop-blur-sm" onClick={handleSendMessage}>
  <Mail className="mr-2 h-5 w-5" />
  <span className="text-lg">Send Message</span>
- </Button>
+ </Button> */}
  </div>
 
  <div className="flex flex-wrap gap-6 justify-center mt-8 text-sm">

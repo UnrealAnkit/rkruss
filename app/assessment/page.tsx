@@ -14,7 +14,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, User, Globe } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, User, Globe, MessageCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
 const formSchema = z.object({
@@ -76,6 +76,11 @@ const contactInfo = [
  icon: Phone,
  title: 'Phone',
  value: '+7 (495) 123-4567',
+ },
+ {
+ icon: MessageCircle,
+ title: 'WhatsApp',
+ value: '+7 (996) 665-1652',
  },
  {
  icon: Mail,
