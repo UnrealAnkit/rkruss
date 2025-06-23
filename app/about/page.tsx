@@ -140,7 +140,7 @@ export default function AboutPage() {
  Founded in 2014, RK Visa Solutions began with a simple mission: to make international education and immigration accessible to everyone. What started as a small consulting firm has grown into a trusted partner for thousands of students and professionals worldwide.
  </p>
  <p>
- Our founder, Rajesh Kumar, experienced firsthand the challenges of navigating complex immigration processes. This personal experience drove him to create a company that would simplify these processes and provide expert guidance every step of the way.
+ Our founder, Rahul experienced firsthand the challenges of navigating complex immigration processes. This personal experience drove him to create a company that would simplify these processes and provide expert guidance every step of the way.
  </p>
  <p>
  Today, we're proud to have helped over 5,000 clients achieve their dreams of studying and working abroad. Our success is measured not just in numbers, but in the lives we've transformed and the dreams we've helped realize.
